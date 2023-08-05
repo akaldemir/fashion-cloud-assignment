@@ -32,7 +32,7 @@ def _parse_args(args):
 
 
 def main(price_catalog_filepath, mappings_filepath, output_filepath):
-    header, variations = file.read_price_catalog(price_catalog_filepath)
+    variations = file.read_price_catalog(price_catalog_filepath)
     mappings = file.read_mapping(mappings_filepath)
 
     mapped_variations = mapper.reduce_and_map(mappings, variations)
@@ -44,5 +44,5 @@ def main(price_catalog_filepath, mappings_filepath, output_filepath):
 
 
 if __name__ == '__main__':
-    args = _parse_args(sys.argv)
-    main(args.price_catalog, args.mappings, args.output)
+    parsed_args = _parse_args(sys.argv)
+    main(parsed_args.price_catalog, parsed_args.mappings, parsed_args.output)

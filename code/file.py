@@ -3,7 +3,7 @@ import json
 import csv
 
 
-def read_price_catalog(filepath: str) -> (List[str], List[dict]):
+def read_price_catalog(filepath: str) -> List[dict]:
     """
     Get price catalog and article header from csv file
 
@@ -14,8 +14,8 @@ def read_price_catalog(filepath: str) -> (List[str], List[dict]):
 
     Returns
     -------
-    (List[str], List[dict])
-        Tuple containing header as list of str and article variations as list of dict
+    List[dict]
+        Article variations as list of dict
     """
     variations = []
     with open(filepath) as csvfile:
@@ -29,7 +29,7 @@ def read_price_catalog(filepath: str) -> (List[str], List[dict]):
         for variation in csvreader:
             variations.append(variation)
 
-    return header, variations
+    return variations
 
 
 def read_mapping(filepath: str) -> List[dict]:
