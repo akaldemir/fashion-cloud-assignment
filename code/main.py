@@ -28,7 +28,7 @@ def _parse_args(args):
                         default=FINAL_CATALOG_FILE_PATH
                         )
 
-    return parser.parse_args()
+    return parser.parse_args(args[1:])
 
 
 def main(price_catalog_filepath, mappings_filepath, output_filepath):
