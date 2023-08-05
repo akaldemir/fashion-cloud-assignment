@@ -22,9 +22,6 @@ def read_price_catalog(filepath: str) -> List[dict]:
         # creating a csv reader object
         csvreader = csv.DictReader(csvfile, delimiter=";")
 
-        # extracting header
-        header = csvreader.fieldnames
-
         # extracting fields using header
         for variation in csvreader:
             variations.append(variation)
@@ -51,7 +48,7 @@ def read_mapping(filepath: str) -> List[dict]:
         # creating a csv reader object
         csvreader = csv.reader(csvfile, delimiter=";")
 
-        header = next(csvreader)
+        next(csvreader)
 
         # extracting header
         for mapping in csvreader:
