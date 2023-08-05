@@ -1,6 +1,6 @@
 from typing import List
 
-from toolz import itertoolz
+from toolz import itertoolz # type: ignore
 
 ARTICLES, ARTICLE_NUMBER, VARIATIONS = "articles", "article_number", "variations"
 
