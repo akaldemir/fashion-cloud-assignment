@@ -1,4 +1,5 @@
 from typing import List
+
 from toolz import itertoolz
 
 ARTICLES, ARTICLE_NUMBER, VARIATIONS = "articles", "article_number", "variations"
