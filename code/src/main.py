@@ -33,9 +33,9 @@ def _parse_args(args):
 
 def main(price_catalog_filepath, mappings_filepath, output_filepath):
     variations = file.read_price_catalog(price_catalog_filepath)
-    mappings = file.read_mapping(mappings_filepath)
+    mappings, reduce_rules = file.read_mapping(mappings_filepath)
 
-    mapped_variations = mapper.reduce_and_map(mappings, variations)
+    mapped_variations = mapper.reduce_and_map(mappings, reduce_rules, variations)
     articles = grouper.group_variations_to_articles(mapped_variations)
     catalog = grouper.level_up_variations_attributes(articles)
     catalog = grouper.level_up_articles_attributes(catalog)

@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Tuple
 import json
 import csv
 
@@ -29,7 +29,7 @@ def read_price_catalog(filepath: str) -> List[dict]:
     return variations
 
 
-def read_mapping(filepath: str) -> List[dict]:
+def read_mapping(filepath: str) -> Tuple[List[dict], List[dict]]:
     """
     Get mapping data from csv file
 
@@ -40,10 +40,12 @@ def read_mapping(filepath: str) -> List[dict]:
 
     Returns
     -------
-    List[dict]
-        List of mappings in dict format
+    Tuple[List[dict], List[dict]]
+        Returns mappings and reduce rules in List of dict format
     """
     mappings = []
+    reduce_rules = []
+    append_rules = []
     with open(filepath) as csvfile:
         # creating a csv reader object
         csvreader = csv.reader(csvfile, delimiter=";")
@@ -52,15 +54,28 @@ def read_mapping(filepath: str) -> List[dict]:
 
         # extracting header
         for mapping in csvreader:
-            mappings.append(
-                {
-                    "sources": mapping[0].split("|"),
-                    "destination": mapping[1],
-                    "source_types": mapping[2].split("|"),
-                    "destination_type": mapping[3]
-                }
-            )
-        return mappings
+            if "|" in mapping[0]:
+                reduce_rules.append(
+                    {
+                        "sources": mapping[0].split("|"),
+                        "destination": mapping[1],
+                        "source_types": mapping[2].split("|"),
+                        "destination_type": mapping[3]
+                    }
+                )
+            elif "+" in mapping[0]:
+                pass
+            else:
+                mappings.append(
+                    {
+                        "sources": mapping[0],
+                        "destination": mapping[1],
+                        "source_types": mapping[2],
+                        "destination_type": mapping[3]
+                    }
+                )
+
+        return mappings, reduce_rules
 
 
 def write_final_catalog(filepath: str, catalog: dict):

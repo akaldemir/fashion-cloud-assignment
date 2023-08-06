@@ -10,14 +10,17 @@ def test_read_price_catalog(variations):
 
 
 def test_read_mapping():
-    result = file.read_mapping("test_data/mappings_mini.csv")
-    assert result == [
-        {'sources': ['winter'], 'destination': 'Winter', 'source_types': ['season'], 'destination_type': 'season'},
-        {'sources': ['NW 17-18'], 'destination': 'Winter Collection 2017/2018', 'source_types': ['collection'], 'destination_type': 'collection'},
+    mappings, reduce_rules = file.read_mapping("test_data/mappings_mini.csv")
+    assert mappings == [
+        {'sources': 'winter', 'destination': 'Winter', 'source_types': 'season', 'destination_type': 'season'},
+        {'sources': 'NW 17-18', 'destination': 'Winter Collection 2017/2018', 'source_types': 'collection', 'destination_type': 'collection'},
+        {'sources': '4', 'destination': 'Boot', 'source_types': 'article_structure_code', 'destination_type': 'article_structure'},
+        {'sources': '5', 'destination': 'Sneaker', 'source_types': 'article_structure_code', 'destination_type': 'article_structure'},
+        {'sources': '1', 'destination': 'Nero', 'source_types': 'color_code', 'destination_type': 'color'}
+    ]
+    assert reduce_rules == [
         {'sources': ['EU', '36'], 'destination': 'European size 36', 'source_types': ['size_group_code', 'size_code'], 'destination_type': 'size'},
-        {'sources': ['4'], 'destination': 'Boot', 'source_types': ['article_structure_code'], 'destination_type': 'article_structure'},
-        {'sources': ['5'], 'destination': 'Sneaker', 'source_types': ['article_structure_code'], 'destination_type': 'article_structure'},
-        {'sources': ['1'], 'destination': 'Nero', 'source_types': ['color_code'], 'destination_type': 'color'}
+        {'sources': ['EU', '40'], 'destination': 'European size 40', 'source_types': ['size_group_code', 'size_code'], 'destination_type': 'size'},
     ]
 
 
