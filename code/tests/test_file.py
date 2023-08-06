@@ -1,8 +1,7 @@
 import os
 import json
-import file
 
-import pytest
+from src import file
 
 
 def test_read_price_catalog(variations):

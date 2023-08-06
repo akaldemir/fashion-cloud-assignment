@@ -1,6 +1,6 @@
 import pytest
 
-import grouper
+from src import grouper
 
 
 @pytest.fixture

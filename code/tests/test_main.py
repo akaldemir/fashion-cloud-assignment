@@ -2,8 +2,7 @@ import argparse
 
 import pytest
 
-import main as main
-
+from src import main as main
 
 PRICE_CATALOG_FILE_PATH = "/some_path/some_price.csv"
 MAPPINGS_FILE_PATH = "/some_path/some_mapping.csv"
@@ -12,12 +11,18 @@ FINAL_CATALOG_FILE_PATH = "/some_path/output.json"
 
 @pytest.fixture
 def command_line_arguments():
-    return argparse.Namespace(price_catalog=PRICE_CATALOG_FILE_PATH, mappings=MAPPINGS_FILE_PATH, output=FINAL_CATALOG_FILE_PATH)
+    return argparse.Namespace(price_catalog=PRICE_CATALOG_FILE_PATH,
+                              mappings=MAPPINGS_FILE_PATH,
+                              output=FINAL_CATALOG_FILE_PATH
+                              )
 
 
 @pytest.fixture
 def command_line_arguments_for_argless():
-    return argparse.Namespace(price_catalog="pricat.csv", mappings="mappings.csv", output="final_catalog.json")
+    return argparse.Namespace(price_catalog="../tests/test_data/pricat.csv",
+                              mappings="../tests/test_data/mappings.csv",
+                              output="final_catalog.json"
+                              )
 
 
 def test_parse_args(command_line_arguments):
