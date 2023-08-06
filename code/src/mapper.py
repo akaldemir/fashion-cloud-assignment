@@ -66,7 +66,10 @@ def _reducer(reduce_rules: List[dict], variation: dict) -> dict:
     # Eliminates blank fields with if statement inside of dict comprehension
     mapped_var = {key: value for key, value in variation.items() if value}
     for reduce_rule in reduce_rules:
-        source = [variation[source_type] for source_type in reduce_rule[SOURCE_TYPES]]
+        try:
+            source = [variation[source_type] for source_type in reduce_rule[SOURCE_TYPES]]
+        except KeyError:
+            continue
         if reduce_rule[SOURCES] == source:
             # Pop fields to be reduced
             for source_type in reduce_rule[SOURCE_TYPES]:

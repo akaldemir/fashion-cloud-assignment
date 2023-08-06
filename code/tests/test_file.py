@@ -9,19 +9,10 @@ def test_read_price_catalog(variations):
     assert result == variations
 
 
-def test_read_mapping():
-    mappings, reduce_rules = file.read_mapping("test_data/mappings_mini.csv")
-    assert mappings == [
-        {'sources': 'winter', 'destination': 'Winter', 'source_types': 'season', 'destination_type': 'season'},
-        {'sources': 'NW 17-18', 'destination': 'Winter Collection 2017/2018', 'source_types': 'collection', 'destination_type': 'collection'},
-        {'sources': '4', 'destination': 'Boot', 'source_types': 'article_structure_code', 'destination_type': 'article_structure'},
-        {'sources': '5', 'destination': 'Sneaker', 'source_types': 'article_structure_code', 'destination_type': 'article_structure'},
-        {'sources': '1', 'destination': 'Nero', 'source_types': 'color_code', 'destination_type': 'color'}
-    ]
-    assert reduce_rules == [
-        {'sources': ['EU', '36'], 'destination': 'European size 36', 'source_types': ['size_group_code', 'size_code'], 'destination_type': 'size'},
-        {'sources': ['EU', '40'], 'destination': 'European size 40', 'source_types': ['size_group_code', 'size_code'], 'destination_type': 'size'},
-    ]
+def test_read_mapping(mappings, reduce_rules):
+    mapping_result, reduce_result = file.read_mapping("test_data/mappings_mini.csv")
+    assert mapping_result == mappings
+    assert reduce_result == reduce_rules
 
 
 def test_write_final_catalog(tmp_path, catalog_refined):
