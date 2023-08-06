@@ -1,6 +1,6 @@
 from typing import List
 
-from toolz import itertoolz # type: ignore
+from toolz import itertoolz  # type: ignore
 
 ARTICLES, ARTICLE_NUMBER, VARIATIONS = "articles", "article_number", "variations"
 
@@ -48,8 +48,11 @@ def _level_up_attributes(main_container: dict, child_name: str, exclude_key: str
     child_container = main_container[child_name]
     keys = [key for key in child_container[0].keys() if key != exclude_key]
     for key in keys:
-        # Store values for a certain key in a set to check if there is only one option or not
-        values = {variation[key] for variation in child_container}
+        try:
+            # Store values for a certain key in a set to check if there is only one option or not
+            values = {variation[key] for variation in child_container}
+        except KeyError:
+            continue
         if len(values) == 1:
             # Add attribute to main container(leveling up)
             main_container[key] = values.pop()

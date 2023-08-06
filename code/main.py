@@ -5,8 +5,8 @@ import grouper
 import mapper
 import file
 
-PRICE_CATALOG_FILE_PATH = "pricat.csv"
-MAPPINGS_FILE_PATH = "mappings.csv"
+PRICE_CATALOG_FILE_PATH = "tests/test_data/pricat.csv"
+MAPPINGS_FILE_PATH = "tests/test_data/mappings.csv"
 FINAL_CATALOG_FILE_PATH = "final_catalog.json"
 
 
