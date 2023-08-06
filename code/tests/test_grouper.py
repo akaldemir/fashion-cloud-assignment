@@ -4,24 +4,11 @@ import grouper
 
 
 @pytest.fixture
-def variations():
-    variations = [
-        {"article_number": "01-alper", "collection": "NW 17-18", "size_group_code": "EU", "size_code": "36", "color": "white"},
-        {"article_number": "01-alper", "collection": "NW 17-18", "size_group_code": "EU", "size_code": "37", "color": "white"},
-        {"article_number": "01-alper", "collection": "NW 17-18", "size_group_code": "EU", "size_code": "38", "color": "white"},
-        {"article_number": "02-alper", "collection": "NW 17-18", "size_group_code": "EU", "size_code": "38", "color": "black"},
-        {"article_number": "02-alper", "collection": "NW 17-18", "size_group_code": "EU", "size_code": "39", "color": "red"},
-        {"article_number": "03-alper", "collection": "NW 17-18", "size_group_code": "EU", "size_code": "39", "color": "red"},
-    ]
-    return variations
-
-
-@pytest.fixture
 def articles_with_article_number_in_variations():
     articles = [
         {
             "article_number": "01-alper",
-            grouper.VARIATIONS: [
+            "variations": [
                 {"article_number": "01-alper", "collection": "NW 17-18", "size_group_code": "EU", "size_code": "36",
                  "color": "white"},
                 {"article_number": "01-alper", "collection": "NW 17-18", "size_group_code": "EU", "size_code": "37",
@@ -31,7 +18,7 @@ def articles_with_article_number_in_variations():
         },
         {
             "article_number": "02-alper",
-            grouper.VARIATIONS: [
+            "variations": [
                 {"article_number": "02-alper", "collection": "NW 17-18", "size_group_code": "EU", "size_code": "38",
                  "color": "black"},
                 {"article_number": "02-alper", "collection": "NW 17-18", "size_group_code": "EU", "size_code": "39",
@@ -39,7 +26,7 @@ def articles_with_article_number_in_variations():
         },
         {
             "article_number": "03-alper",
-            grouper.VARIATIONS: [
+            "variations": [
                 {"article_number": "03-alper", "collection": "NW 17-18", "size_group_code": "EU", "size_code": "39",
                  "color": "red"}],
         },
@@ -56,7 +43,7 @@ def catalog_unrefined():
                 "collection": "NW 17-18",
                 "size_group_code": "EU",
                 "color": "white",
-                grouper.VARIATIONS: [
+                "variations": [
                     {"size_code": "36"},
                     {"size_code": "37"},
                     {"size_code": "38"}
@@ -66,7 +53,7 @@ def catalog_unrefined():
                 "article_number": "02-alper",
                 "collection": "NW 17-18",
                 "size_group_code": "EU",
-                grouper.VARIATIONS: [
+                "variations": [
                     {"size_code": "38", "color": "black"},
                     {"size_code": "39", "color": "red"}],
             },
@@ -76,39 +63,7 @@ def catalog_unrefined():
                 "size_group_code": "EU",
                 "size_code": "39",
                 "color": "red",
-                grouper.VARIATIONS: [{}],
-            },
-        ]
-    }
-    return catalog
-
-
-@pytest.fixture
-def catalog_refined():
-    catalog = {
-        "collection": "NW 17-18",
-        "size_group_code": "EU",
-        "articles": [
-            {
-                "article_number": "01-alper",
-                "color": "white",
-                grouper.VARIATIONS: [
-                    {"size_code": "36"},
-                    {"size_code": "37"},
-                    {"size_code": "38"}
-                ],
-            },
-            {
-                "article_number": "02-alper",
-                grouper.VARIATIONS: [
-                    {"size_code": "38", "color": "black"},
-                    {"size_code": "39", "color": "red"}],
-            },
-            {
-                "article_number": "03-alper",
-                "size_code": "39",
-                "color": "red",
-                grouper.VARIATIONS: [{}],
+                "variations": [{}],
             },
         ]
     }
